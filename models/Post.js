@@ -6,25 +6,20 @@ const postSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    location: String,
     description: String,
     picturePath: String,
     userPicturePath: String,
     likes: {
-      type: Map,
-      of: Boolean,
+      type: Array,
+      default: [],
     },
     comments: {
       type: Array,
       default: [],
+    },
+    fileType: {
+      type: String,
+      default: "image",
     },
   },
   { timestamps: true }
