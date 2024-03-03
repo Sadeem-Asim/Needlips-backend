@@ -16,7 +16,9 @@ export const register = async (req, res) => {
       occupation,
     } = req.body;
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({
+      or: { email: email, username: username },
+    });
     if (user?.fullName)
       return res.status(400).json({ msg: "User exist before. " });
 
