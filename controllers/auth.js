@@ -14,6 +14,7 @@ export const register = async (req, res) => {
       friends,
       location,
       occupation,
+      bio,
     } = req.body;
 
     const user = await User.findOne({
@@ -34,6 +35,7 @@ export const register = async (req, res) => {
       friends,
       location,
       occupation,
+      bio,
     });
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
