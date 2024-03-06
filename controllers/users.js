@@ -77,7 +77,8 @@ export const updateUser = async (req, res) => {
   try {
     const { _id, username, fullName, email, picturePath, occupation, bio } =
       req.body;
-    const user = User.findByIdAndUpdate(_id, {
+    console.log(_id, username, fullName, email, picturePath, occupation);
+    const user = await User.findByIdAndUpdate(_id, {
       username,
       fullName,
       email,
