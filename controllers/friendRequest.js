@@ -3,15 +3,21 @@ import User from "../models/User.js";
 
 export const sendRequest = async (req, res) => {
   try {
-    const { _id, friendId } = req.body;
-    const request = await FriendRequest.create({
-      user: _id,
-      sentTo: friendId,
-    });
-    res.status(200).json({
-      type: "success",
-      message: "Friend request sent successfully",
-    });
+    const { id, friendId } = req.body;
+    if (!id || !friendId) {
+      res.status(200).json({
+        message: "Plz send id and friend id",
+      });
+    } else {
+      const request = await FriendRequest.create({
+        user: id,
+        sentTo: friendId,
+      });
+      res.status(200).json({
+        type: "success",
+        message: "Friend request sent successfully",
+      });
+    }
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
@@ -72,7 +78,7 @@ export const acceptRequest = async (req, res) => {
           };
         }
       );
-
+      await FriendRequest.findByIdAndDelete(request._id);
       res.status(200).json(formattedFriends);
     }
   } catch (err) {

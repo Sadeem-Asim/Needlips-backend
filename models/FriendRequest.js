@@ -13,6 +13,6 @@ const FriendRequestSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
+FriendRequestSchema.index({ user: 1, sentTo: 1 }, { unique: true });
 const FriendRequest = mongoose.model("FriendRequest", FriendRequestSchema);
 export default FriendRequest;
