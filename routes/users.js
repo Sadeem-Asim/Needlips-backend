@@ -20,6 +20,7 @@ const router = express.Router();
 router.get("/:id", verifyToken, getUser);
 router.get("/:id/friends", verifyToken, getUserFriends);
 router.get("/findPeople/:username", findPeople);
+// router.get("/anotherUserById", getAnotherUserById);
 
 router.get("/friendRequests/:id", getAllFriendRequests);
 router.post("/sendFriendRequest", sendRequest);
