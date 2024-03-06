@@ -72,3 +72,22 @@ export const findPeople = async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 };
+
+export const updateUser = async (req, res) => {
+  try {
+    const { _id, username, fullName, email, picturePath, occupation, bio } =
+      req.body;
+    const user = User.findByIdAndUpdate(_id, {
+      username,
+      fullName,
+      email,
+      picturePath,
+      occupation,
+      bio,
+    });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+    console.log(error);
+  }
+};
